@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab01</title>
+  <script src="js/opencv.js"></script>
+</head>
+
+<body>
+  <div>
+    <img id="input_image">
+    <input type="file" id="input_file">
+    <canvas id="output_image"></canvas>
+  </div>
+</body>
+
+<script>
+    let img_input = document.getElementById('input_image');
+    let file_input = document.getElementById('input_file');
+
+    file_input.addEventListener('change', (e)=>{
+        img_input.src = URL.createObjectURL(e.target.files[0])
+
+    }, false)
+</script>
+
+</html>
