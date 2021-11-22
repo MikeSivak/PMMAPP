@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
 
+# !!!! Enter key "q" to close any window 
+
 #Task (1)
 cap = cv2.VideoCapture(0)
 while(True):

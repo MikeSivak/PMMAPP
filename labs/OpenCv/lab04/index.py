@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-#Task (1)
+#Task (1) - Link to theory: https://medium.com/analytics-vidhya/opencv-findcontours-detailed-guide-692ee19eeb18
 def task_1():
     im = cv2.imread('./images/beatles.jpg')
     cv2.imshow('Original', im)
@@ -12,7 +12,7 @@ def task_1():
     cv2.drawContours(im, contours, -1, (0,255,0), 2, cv2.LINE_AA, hierarchy, 3)
     cv2.imshow("Contours", im)
 
-# #Task (2)
+# #Task (2) - Link to theory: https://medium.com/@tomasz.kacmajor/hough-lines-transform-explained-645feda072ab
 def task_2():
     img = cv2.imread('./images/house.jpg')
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -56,10 +56,10 @@ def task_3():
 
 
 def main():
-    # task_1()
-    # cv2.waitKey(0)
-    # task_2()
-    # cv2.waitKey(0)
+    task_1()
+    cv2.waitKey(0)
+    task_2()
+    cv2.waitKey(0)
     task_3()
 
 

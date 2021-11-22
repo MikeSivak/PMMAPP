@@ -4,29 +4,29 @@ import numpy as np
 from matplotlib import pyplot as plt
 import argparse
 
-#Task (1)
-# img = cv2.imread('./images/gel.jpg')
-# gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-# gray = np.float32(gray)
-# dst = cv2.cornerHarris(gray,2,3,0.01)
-#
-# #result is dilated for marking the corners, not important
-# dst = cv2.dilate(dst,None)
-# # Threshold for an optimal value, it may vary depending on the image.
-# img[dst>0.1*dst.max()]=[0,0,255]
-# cv2.imshow('task 1',img)
+#Task (1) - Link with theory: https://docs.opencv.org/3.4/dd/d1a/group__imgproc__feature.html#gac1fc3598018010880e370e2f709b4345
+img = cv2.imread('./images/gel.jpg')
+gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+gray = np.float32(gray)
+dst = cv2.cornerHarris(gray,2,3,0.01)
 
-#Task (2)
-# img2 = cv2.imread('./images/gel.jpg')
-# gray = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
-# corners = cv2.goodFeaturesToTrack(gray,40,0.01,10)
-# corners = np.int0(corners)
-# for i in corners:
-#     x,y = i.ravel()
-#     cv2.circle(img2,(x,y),3,255,-1)
-# cv2.imshow('task 2', img2)
+#result is dilated for marking the corners, not important
+dst = cv2.dilate(dst,None)
+# Threshold for an optimal value, it may vary depending on the image.
+img[dst>0.1*dst.max()]=[0,0,255]
+cv2.imshow('task 1',img)
 
-# Task (3)
+#Task (2) - Link with theory: https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
+img2 = cv2.imread('./images/gel.jpg')
+gray = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
+corners = cv2.goodFeaturesToTrack(gray,40,0.01,10)
+corners = np.int0(corners)
+for i in corners:
+    x,y = i.ravel()
+    cv2.circle(img2,(x,y),3,255,-1)
+cv2.imshow('task 2', img2)
+
+# Task (3) - Link with theory: https://docs.opencv.org/3.4/d4/d61/tutorial_warp_affine.html
 parser = argparse.ArgumentParser(description='Code for Affine Transformations tutorial.')
 parser.add_argument('--input', help='Path to input image.', default='./images/gel.jpg')
 args = parser.parse_args()
@@ -39,7 +39,7 @@ if src is None:
 srcTri = np.array( [[0, 0], [src.shape[1] - 1, 0], [0, src.shape[0] - 1]] ).astype(np.float32)
 dstTri = np.array( [[0, src.shape[1]*0.33], [src.shape[1]*0.85, src.shape[0]*0.25], [src.shape[1]*0.15, src.shape[0]*0.7]] ).astype(np.float32)
 warp_mat = cv2.getAffineTransform(srcTri, dstTri)
-warp_mat2 = cv2.getAffineTransform(dstTri, dstTri);
+warp_mat2 = cv2.getAffineTransform(dstTri, dstTri)
 
 warp_dst = cv2.warpAffine(src, warp_mat, (src.shape[1], src.shape[0]))
 warp_dst2 = cv2.warpAffine(src, warp_mat2, (src.shape[1], src.shape[0]))
